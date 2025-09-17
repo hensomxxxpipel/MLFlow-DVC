@@ -1,0 +1,5 @@
+outs:
+- md5: 1834d2b3d73de173f007fb2b95bd009a
+  size: 177004
+  hash: md5
+  path: play_tennis_dataset.csv
