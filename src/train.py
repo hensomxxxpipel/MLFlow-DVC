@@ -9,8 +9,10 @@ import numpy as np
 import mlflow
 import mlflow.sklearn
 
-MLFLOW_TRACKING_URI = 'http://127.0.0.1:8080'
-mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
+# MLFLOW_TRACKING_URI = 'http://127.0.0.1:8080'
+# mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
+# mlflow.set_tracking_uri("mlruns")
+
 mlflow.set_experiment("Tugas ML")
 
 base_dir = Path(__file__).parent.parent
