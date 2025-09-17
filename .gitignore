@@ -1,2 +1,5 @@
-/dataset/play_tennis_dataset_full.csv
+dataset/play_tennis_dataset_full.csv
 macro-crane-472418-q1-fa674b147ea3.json
+src/train-backup.py
+mlartifacts
+mlruns
