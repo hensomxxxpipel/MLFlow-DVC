@@ -1,0 +1,78 @@
+name: MLFlow & DVC
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  preprocessing:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements_preprocessing.txt
+
+      - name: Run preprocessing
+        run: |
+          python src/preprocessing.py
+
+      - name: Upload clean_data as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: clean_data
+          path: clean_data/
+
+  training:
+    runs-on: ubuntu-latest
+    needs: preprocessing
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements_train.txt
+
+      - name: Download clean_data artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: clean_data
+          path: clean_data
+
+      - name: Run training
+        run: |
+          python src/train.py
+
+      - name: Upload model artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: model
+          path: model/
+
+      - name: Upload report_site artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: report
+          path: report_site/
+      
+      - name: Upload mlruns as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlflow-runs
+          path: mlruns/
+
+  
