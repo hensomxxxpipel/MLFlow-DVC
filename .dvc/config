@@ -1,0 +1,6 @@
+[core]
+    remote = gdrive_remote
+['remote "gdrive_remote"']
+    url = gdrive://1uqhi5iRR1Sq5zWPdIEacYMJff0z0Nv8u
+    gdrive_acknowledge_abuse = true
+    gdrive_service_account_json_file_path = D:\Kuliah\Semester 7\MLOps\Tugas Code\MLFlow_and_DVC\macro-crane-472418-q1-fa674b147ea3.json
